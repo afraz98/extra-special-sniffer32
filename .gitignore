@@ -1,0 +1,10 @@
+# Build files
+src/build/*
+
+# Editor artifacts
+*~
+
+# Compiled (?) python files
+*.pyc
+*.pyo
+
