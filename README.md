@@ -28,6 +28,11 @@ sudo apt-get install git wget flex bison gperf python3 python3-pip python3-venv 
 85  . ./export.sh
 ```
 
+**NOTE**: You must export the IDF between terminal sessions. Espressif recommends creating a bash alias as follows:
+```
+
+```
+
 3) Build the project
 
 ```

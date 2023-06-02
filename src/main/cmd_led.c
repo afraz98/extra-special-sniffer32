@@ -17,7 +17,6 @@
 #include "cmd_led.h"
 
 // For LED control
-#include "led_strip.h"
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 
@@ -37,7 +36,7 @@ void register_led(void){
         .hint = NULL,
         .func = &led_cmd_blink,
         .argtable = NULL
-    }
+    };
 }
 
 void initialize_led(void) {}
@@ -46,14 +45,10 @@ void initialize_led(void) {}
  * @brief Configure GPIO to be toggled for LED interfacing
  * 
  */
-void configure_led(void){
-
-}
+void configure_led(void){}
 
 /**
  * @brief Blink LED when 'blink' command evoked.
  * 
  */
-void led_cmd_blink(void){
-
-}
+void led_cmd_blink(void){}

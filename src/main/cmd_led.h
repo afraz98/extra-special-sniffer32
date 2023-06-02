@@ -27,6 +27,12 @@ void register_led(void);
  */
 void initialize_led(void);
 
+/**
+ * @brief Blink LED when 'blink' command evoked.
+ * 
+ */
+void led_cmd_blink(void);
+
 #ifdef __cplusplus
 }
 #endif

@@ -5,6 +5,14 @@
         "esp_console.h": "c",
         "esp_vfs_dev.h": "c",
         "esp_vfs_fat.h": "c",
-        "nvs_flash.h": "c"
+        "nvs_flash.h": "c",
+        "gpio.h": "c",
+        "cmd_led.h": "c",
+        "nvs.h": "c",
+        "cmd_wifi.h": "c",
+        "cmd_system.h": "c",
+        "task.h": "c",
+        "esp_netif.h": "c",
+        "esp_wifi.h": "c"
     }
 }

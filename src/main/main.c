@@ -1,7 +1,7 @@
 /**
- * @file console_example_main.c
+ * @file main.c
  * @author Anthony Frazier (anthonymfrazier1998@gmail.com)
- * @brief 
+ * @brief Main driver the Extra Special 32 
  * @version 0.1
  * @date 2023-05-22
  * 
@@ -9,8 +9,11 @@
  * 
  */
 
+// Standard library includes
 #include <stdio.h>
 #include <string.h>
+
+// ESP32 system headers
 #include "esp_system.h"
 #include "esp_log.h"
 #include "esp_console.h"
@@ -18,9 +21,14 @@
 #include "esp_vfs_fat.h"
 #include "nvs.h"
 #include "nvs_flash.h"
+
+// Command headers
 #include "cmd_system.h"
 #include "cmd_wifi.h"
 #include "cmd_nvs.h"
+
+#define WIFI_COMMANDS_DISABLED 1
+#define DISABLE_NVS 1
 
 static const char* TAG = "example";
 #define PROMPT_STR CONFIG_IDF_TARGET
@@ -47,6 +55,7 @@ static void initialize_filesystem(void)
         return;
     }
 }
+
 #endif // CONFIG_STORE_HISTORY
 
 static void initialize_nvs(void)
@@ -63,10 +72,14 @@ void app_main(void)
 {
     esp_console_repl_t *repl = NULL;
     esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();
-    /* Prompt to be printed before each line. This can be customized, made dynamic, etc. */
+    
+    // Prompt to be printed before each line. This can be customized, made dynamic, etc.
     repl_config.prompt = PROMPT_STR "#";
     repl_config.max_cmdline_length = CONFIG_CONSOLE_MAX_COMMAND_LINE_LENGTH;
+
+#ifndef DISABLE_NVS
     initialize_nvs();
+#endif
 
 #if CONFIG_CONSOLE_STORE_HISTORY
     initialize_filesystem();
@@ -77,15 +90,22 @@ void app_main(void)
 #endif
 
     /* Register commands */
+    // Register help command to print all supported commands and their arguments.
     esp_console_register_help_command();
+
+    // Register command system commands
     register_system_common();
 #ifndef CONFIG_IDF_TARGET_ESP32H2  // needs deep sleep support, IDF-6268
     register_system_sleep();
 #endif
-#if SOC_WIFI_SUPPORTED
-    register_wifi();
+
+#ifndef WIFI_COMMANDS_DISABLED
+    #if SOC_WIFI_SUPPORTED
+        register_wifi();
+    #endif
+        register_nvs();
 #endif
-    register_nvs();
+
 
 #if defined(CONFIG_ESP_CONSOLE_UART_DEFAULT) || defined(CONFIG_ESP_CONSOLE_UART_CUSTOM)
     esp_console_dev_uart_config_t hw_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();

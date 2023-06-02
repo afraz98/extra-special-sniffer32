@@ -1,1 +1,1 @@
-idf_component_register(SRCS "cmd_led.c" "main.c" INCLUDE_DIRS ".")
+idf_component_register(SRCS "cmd_wifi.c" "cmd_nvs.c" "cmd_system.c" "main.c" INCLUDE_DIRS ".")
