@@ -133,7 +133,11 @@ static void register_version(void)
 
 static int echo_str(int argc, char**argv)
 {
-    printf("Echo command invoked\n\n");
+    if(argc < 2) {
+        return -1
+    }
+
+    printf(argv[1]);
     return 0;
 }
 
