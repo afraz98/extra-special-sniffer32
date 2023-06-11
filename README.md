@@ -28,9 +28,16 @@ sudo apt-get install git wget flex bison gperf python3 python3-pip python3-venv 
 85  . ./export.sh
 ```
 
-3) Build and flash the project on to the device
+3) Set up the following bash alias:
 
 ```
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+```
+
+4) Build and flash the project on to the device
+
+```
+get_idf
 idf.py -p <PORT> flash
 ```
 

@@ -134,10 +134,10 @@ static void register_version(void)
 static int echo_str(int argc, char**argv)
 {
     if(argc < 2) {
-        return -1
+        printf("\n");
     }
 
-    printf(argv[1]);
+    printf("%s\n", argv[1]);
     return 0;
 }
 
